@@ -1,4 +1,4 @@
-from node import Node
+from node import *
 from requirement_load import load_req
 
 def test_node_init():
@@ -22,4 +22,34 @@ def test_child_parent():
     assert p.children_lengh() == 2
     assert c1._parent.id == 'P2G-100'
     assert c2._parent.id == 'P2G-100'
+
+def test_node_exists():
+    s = set()
+    e1 = Node("P2G-100","FUNC")
+    s.add(e1)
+    assert e1 in s
+
+def test_node_notexists():
+    s = set()
+    e1 = Node("P2G-100","FUNC")
+    s.add(e1)
+    e2 = Node("P2G-101","FUNC")
+    assert e2 not in s
+
+def test_dfs():
+    p = Node("P2G-100","FUNC")
+    c1 = Node("P2G-101","FUNC")
+    c2 = Node("P2G-102","FUNC")
+    p.add_dependency(c1)
+    p.add_dependency(c2)
+    dfs_visit(p)
+    
+def test_postorder():
+    p = Node("P2G-100","FUNC")
+    c1 = Node("P2G-101","FUNC",1)
+    c2 = Node("P2G-102","FUNC",2)
+    p.add_dependency(c1)
+    p.add_dependency(c2)
+    postorder_visit(p)
+
     

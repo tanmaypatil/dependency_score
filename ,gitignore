@@ -34,3 +34,5 @@ MANIFEST
 *.spec
 
 # Installer log
+
+__pycache__\*
