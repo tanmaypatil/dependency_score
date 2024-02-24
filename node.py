@@ -1,10 +1,8 @@
-import logging
-# Configure logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class Node:
-    def __init__(self, id,dep_score=1,_children=(), _op=''):
+    def __init__(self, id, epic_type , dep_score=1,_children=(), _op=''):
       self.id = id
+      self.epic_type = epic_type
       self.__dep_score = dep_score
       self._children = set(_children)
       self._parent = None
@@ -21,6 +19,5 @@ class Node:
         self.__dep_score = 1
         return self.__dep_score 
     def children_lengh(self):
-      logging.info(f'Node::children_lengh {len(self._children)}')
       return len(self._children)
        
