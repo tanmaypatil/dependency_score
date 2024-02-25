@@ -51,5 +51,17 @@ def test_postorder():
     p.add_dependency(c1)
     p.add_dependency(c2)
     postorder_visit(p)
+    
+def test_postorder_level2():
+    p = Node("P2G-100","FUNC")
+    c1 = Node("P2G-101","FUNC")
+    c2 = Node("P2G-102","FUNC",2)
+    p.add_dependency(c1)
+    p.add_dependency(c2)
+    c21 = Node("GDB-1234","DEVOPS",5)
+    c22 = Node("PCM-1111","INFRA",5)
+    c1.add_dependency(c21)
+    c1.add_dependency(c22)
+    postorder_visit(p)
 
     

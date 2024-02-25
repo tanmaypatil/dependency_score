@@ -1,13 +1,12 @@
 
 from Stack import Stack
 class Node:
-    def __init__(self, id, epic_type , dep_score=0,_children=(), _op=''):
+    def __init__(self, id, epic_type , dep_score=0,_children=()):
       self.id = id
       self.epic_type = epic_type
       self.__dep_score = dep_score
       self._children = set(_children)
       self._parent = None
-      self._op = _op # the op that produced this node, for graphviz / debugging / etc
     def add_dependency(self, other):
       other = other if isinstance(other, Node) else Node(other)
       self.__dep_score = self.__dep_score + other.__dep_score
@@ -17,7 +16,6 @@ class Node:
       # set the parent on the other node
       other._parent = self
     def calc_dependency_score(self):
-        self.__dep_score = 0
         return self.__dep_score 
     def children_lengh(self):
       return len(self._children)
@@ -27,13 +25,22 @@ class Node:
         return self.id == other.id and self.epic_type == other.epic_type
     def __hash__(self):
         return hash((self.id, self.epic_type))  
-    def get_dependecy_score(self):
+    def get_dependency_score(self):
         return self.__dep_score
+    def set_dependency_score(self,dep_score):
+        self.__dep_score = dep_score
     
 def process_node(current_node):
     print("process_node ")
     print(f"current node id : {current_node.id} epic type : {current_node.epic_type}")
-    print(f"childrens : {len(current_node._children)} , dependency score {current_node.get_dependecy_score()}")
+    # update self dependency score using summation of children score
+    dep_score = 0 
+    if len(current_node._children) > 0 :
+      for node in current_node._children:
+        dep_score += node.get_dependency_score()
+      current_node.set_dependency_score(dep_score)
+    print(f"childrens : {len(current_node._children)} , dependency score {current_node.get_dependency_score()}")
+     
 
 def dfs_visit(root):
     visited = set() 
