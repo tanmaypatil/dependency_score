@@ -19,7 +19,7 @@ def test_child_parent():
     c2 = Node("P2G-102","FUNC")
     p.add_dependency(c1)
     p.add_dependency(c2)
-    assert p.children_lengh() == 2
+    assert p.children_length() == 2
     assert c1._parent.id == 'P2G-100'
     assert c2._parent.id == 'P2G-100'
 

@@ -17,7 +17,7 @@ class Node:
       other._parent = self
     def calc_dependency_score(self):
         return self.__dep_score 
-    def children_lengh(self):
+    def children_length(self):
       return len(self._children)
     def __eq__(self, other):
         if not isinstance(other, Node):
