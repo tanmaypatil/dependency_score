@@ -1,21 +1,14 @@
 from score_params import * 
 import pandas as pd
 
-def scale_product_priority(priority):
-    val = -4.9 * priority + 9.9 
-    return val
 
-def normalise(var_name ,x):
-    limits = params[var_name]
-    min = limits["min"]
-    max = limits["max"]
-    smin = scale["min"]
-    smax = scale["max"]
-    newValue = smin + ( x - min ) * ( smax - smin ) /( max - min)
-    return newValue
-
-def calculate_score(row):
-    return None
+def calculate_score(row_params):
+    score = 0
+    for column,value,weight in row_params:
+      norm_value = params[column]["function"](column,value) 
+      weighted_value = norm_value * (weight /100)
+      score += weighted_value
+    return score 
 
 def load_req():
     sheet_name='dependency'
@@ -25,7 +18,15 @@ def load_req():
     return df
 
 def row_iterate():
-  df = load_req()
-  for index, row in df.iterrows():
-    #print(index, row)
-    print(f" dependency : {row['dependency']}")
+    df = load_req()
+    columns = params.keys()
+    for index, row in df.iterrows():
+      row_params = []
+      for column in columns:
+        value = row [column]
+        weight = params[column]["weight"]
+        col_params = (column,value, weight)
+        row_params.append(col_params)
+        calculate_score(row_params)  
+    
+    
