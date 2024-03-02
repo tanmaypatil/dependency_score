@@ -46,14 +46,15 @@ def draw_tree(root, format='svg', rankdir='BT'):
     return dot
 
 def draw_node(node : Node,dot):
-    dot.format = 'svg'
-    dot.node(name=str(id(node)), label = "{ id %s | dep_score %.4f }" % (node.id ,node.get_dependency_score()), shape='record')
+    #dot.format = 'svg'
+    dot.node(name=str(id(node)), label = "{  %s | dep_score %.4f }" % (node.id ,node.get_dependency_score()), shape='record')
     if node.children_length() > 0 :
       for child in node._children:
         dot.edge(str(id(node)), str(id(child)))
             
 
 def draw_full_tree(root,dot):
+    print(f" dot format is {dot.format}")
     if root:
       for node in root._children:
         draw_full_tree(node,dot)
