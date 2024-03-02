@@ -4,11 +4,16 @@ import pandas as pd
 
 def calculate_score(row_params):
     score = 0
+    err = None
     for column,value,weight in row_params:
-      norm_value = params[column]["function"](column,value) 
-      weighted_value = norm_value * (weight /100)
-      score += weighted_value
-    return score 
+      try:
+        norm_value = params[column]["norm_function"](column,value) 
+        weighted_value = norm_value * (weight /100)
+        score += weighted_value
+      except KeyError:
+        score = 0
+        err = f"key not found {column} norm_function"        
+    return score ,err
 
 def load_req():
     sheet_name='dependency'

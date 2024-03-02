@@ -61,6 +61,24 @@ def test_dict_neg():
       params["ABC"]
     except KeyError:
       print("key not found")
+
+def test_calc_score3():
+    """
+    use 4 variables , requirement effort, dependency effort, product priority , arrival sprint 
+    to calculate dependency score 
+    """
+    col1 = ("requirement effort",30,10)
+    col2 = ("dependency effort",30,10)
+    col3 = ("product priority",1.1,50)
+    col4 = ("arrival sprint",4,30)
+    rows = []
+    rows.append(col1)
+    rows.append(col2)
+    rows.append(col3)
+    rows.append(col4)
+    score ,err = calculate_score(rows)
+    assert err == None
+    print(f"score : {score}")
    
 
     
