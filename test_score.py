@@ -79,6 +79,34 @@ def test_calc_score3():
     score ,err = calculate_score(rows)
     assert err == None
     print(f"score : {score}")
+
+def test_round_val():
+    assert( round(10.152,2)== 10.15)
+
+def test_score_df_1row():
+    df = pd.DataFrame( {'requirement effort' : [30] ,'dependency effort' : [30],
+                        'product priority' :[1.1],'arrival sprint' : [4]  } )
+    row_iterate_score(df)
+    assert(df.loc[0,"score"] != 0)
+    print(df.loc[0,"score"])
+    
+def test_score_df_2row():
+    df = pd.DataFrame( {'requirement effort' : [30,60,60,60] ,'dependency effort' : [30,30,60,60],
+                        'product priority' :[1.1,1.1,1.1,1.0],'arrival sprint' : [4,4,4,4]  } )
+    row_iterate_score(df)
+    # check for score at index location 0
+    assert(df.loc[0,"score"] != 0)
+    print(df.loc[0,"score"])
+    # check for score at index location 1
+    assert(df.loc[1,"score"] != 0)
+    print(df.loc[1,"score"])
+    # check for score at index location 2
+    assert(df.loc[2,"score"] != 0)
+    print(df.loc[2,"score"])
+    # check for score at index location 3
+    assert(df.loc[3,"score"] != 0)
+    print(df.loc[3,"score"])
+    
    
 
     

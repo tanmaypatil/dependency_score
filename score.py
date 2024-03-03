@@ -22,9 +22,9 @@ def load_req():
     df = pd.read_excel(file_path, sheet_name=sheet_name)
     return df
 
-def row_iterate():
-    df = load_req()
+def row_iterate_score(df):
     columns = params.keys()
+    score_list = []
     for index, row in df.iterrows():
       row_params = []
       for column in columns:
@@ -32,6 +32,8 @@ def row_iterate():
         weight = params[column]["weight"]
         col_params = (column,value, weight)
         row_params.append(col_params)
-        calculate_score(row_params)  
+      score =calculate_score(row_params)
+      score_list.append(score) 
+    df["score"] = score_list
     
     
