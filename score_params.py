@@ -1,4 +1,4 @@
-def scale_product_priority(col_name,input_val):
+def scale_product_priority(_,input_val):
     output_val = -4.9 * input_val + 9.9 
     return output_val
 

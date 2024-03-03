@@ -29,6 +29,19 @@ class Node:
         return self.__dep_score
     def set_dependency_score(self,dep_score):
         self.__dep_score = dep_score
+
+class AllNodes:
+    def __init__(self):
+      self.nodes = {}
+    def add_node(self,node):
+      if not isinstance(node, Node):
+        return NotImplemented
+      self.nodes[node.id] = node
+    def is_exist(self,id):
+      if id in self.nodes:
+        return True
+      else: 
+        return False
     
 def process_node(current_node):
     print("process_node ")
@@ -55,7 +68,15 @@ def dfs_visit(root):
           if node not in visited:
             stack.push(node)
 
-def postorder_visit(root):
+def postorder_visit(root : Node):
+    """
+    _summary_
+       Args:
+      root (Node): 
+      Do a postorder traversal of nodes 
+      1) visit children , process them 
+      2) visit parent , process parent.
+    """
     if root:
       for node in root._children:
         postorder_visit(node)
