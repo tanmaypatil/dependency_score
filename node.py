@@ -29,15 +29,30 @@ class Node:
         return self.__dep_score
     def set_dependency_score(self,dep_score):
         self.__dep_score = dep_score
+    def has_parent(self):
+        return self._parent != None 
 
 class AllNodes:
     def __init__(self):
-      self.nodes = {}
+        self.nodes = {}
+        # parents which does not have parents above them
+        self.top_parents = set()
+    def create_node(self,id, epic_type , dep_score=0,_children=()):
+        n = Node(id, epic_type , dep_score,_children) 
+        self.add_node(n)   
     def add_node(self,node):
-      if not isinstance(node, Node):
-        return NotImplemented
-      self.nodes[node.id] = node
-    def is_exist(self,id):
+        if not isinstance(node, Node):
+          return NotImplemented
+        self.nodes[node.id] = node
+    def add_dependency(self,p,c):
+        assert isinstance(p, Node)
+        assert isinstance(c,Node) 
+        if p.has_parent() == None:
+          self.top_parents.add(p.id)
+        if c.has_parent() != None:
+          self.top_parents.remove(c.id)  
+        p.add_dependency(c)
+    def does_exist(self,id):
       if id in self.nodes:
         return True
       else: 
