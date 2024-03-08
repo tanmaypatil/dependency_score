@@ -5,7 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
-
+**/dependency/
+Scripts/
+Lib/
 # Distribution / packaging
 .Python
 build/
@@ -35,4 +37,3 @@ MANIFEST
 
 # Installer log
 
-__pycache__\*

@@ -107,6 +107,8 @@ def test_score_df_2row():
     assert(df.loc[3,"score"] != 0)
     print(df.loc[3,"score"])
     
+
+    
    
 
     

@@ -57,6 +57,8 @@ class AllNodes:
         return True
       else: 
         return False
+    def visualise_all(self):
+        return None
     
 def process_node(current_node):
     print("process_node ")
