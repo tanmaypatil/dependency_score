@@ -106,6 +106,15 @@ def test_score_df_2row():
     # check for score at index location 3
     assert(df.loc[3,"score"] != 0)
     print(df.loc[3,"score"])
+
+def test_remove_frset():
+    s = set()
+    s.add(1)
+    try:
+      s.remove(5)
+    except KeyError:
+      print("key 5 not found")  
+    
     
 
     
