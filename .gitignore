@@ -36,4 +36,7 @@ MANIFEST
 *.spec
 
 # Installer log
+# graph files
+*.pdf
+*.gv
 

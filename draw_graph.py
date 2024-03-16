@@ -59,4 +59,32 @@ def draw_full_tree(root,dot):
       for node in root._children:
         draw_full_tree(node,dot)
       draw_node(root,dot)
-    
+
+def draw_subgraph_node(node,c):
+    c.node(name=str(id(node)), label = "{  %s | dep_score %.4f }" % (node.id ,node.get_dependency_score()), shape='record')
+    if node.children_length() > 0 :
+      for child in node._children:
+        c.edge(str(id(node)), str(id(child)))
+   
+    return None
+
+def postorder_draw(root : Node,c ):
+    """
+      Args:
+      root (Node): 
+      Do a postorder traversal of tree of nodes in order to draw 
+      1) visit children , draw them in a subgraph 
+      2) visit parent , draw it in a subgraph
+    """
+    if root:
+      for node in root._children:
+        postorder_draw(node,c)
+      draw_subgraph_node(root,c)
+
+def draw_subgraph(g,root):
+    with g.subgraph(name='cluster_0') as c:
+      c.attr(style='filled', color='lightgrey')
+      c.node_attr.update(style='filled', color='white')
+      postorder_draw(root,c)
+      
+      
