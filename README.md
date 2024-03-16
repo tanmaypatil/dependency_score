@@ -1,2 +1,2 @@
-# dependency_score
+# dependency score calculation
 Dependency score calculation for software project
