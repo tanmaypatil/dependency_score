@@ -81,10 +81,18 @@ def postorder_draw(root : Node,c ):
         postorder_draw(node,c)
       draw_subgraph_node(root,c)
 
-def draw_subgraph(g,root):
-    with g.subgraph(name='cluster_0') as c:
+def draw_subgraph(g,root,cluster_id):
+    with g.subgraph(name=cluster_id) as c:
       c.attr(style='filled', color='lightgrey')
       c.node_attr.update(style='filled', color='white')
       postorder_draw(root,c)
+      
+
+def draw_allsubgraphs(set_pnodes):
+    g = graphviz.Graph('parent') 
+    for index,pnode in enumerate(set_pnodes):
+       cluster_id = f"cluster_{index}"
+       draw_subgraph(g,pnode,cluster_id)
+    return g
       
       
