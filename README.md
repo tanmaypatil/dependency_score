@@ -22,14 +22,14 @@ All the input variables ( such as requirement effort) is scaled to value between
 Higher the score and higher the dependency of a requirement or epic on other teams 
 
 ### Variables 
-* Requirement effort 
+* **Requirement effort** 
 Effort in person days of the epic under question . It could be between 0 to 200 person days .
 Lower and upper bounds are configurable . This value is scaled down to be between 0 to 5.
-* Dependency effort
+* **Dependency effort**
 Effort in person days of dependency effort .For example if infra work needs to be done prior to complete functional work,then infra epic is a dependency . Value is scaled down to be between 0 to 5
-* Product priority 
+* **Product priority** 
 Importance of epic from product management point of view . A value between 1 and 2 . Decimal values are allowed . Dependency score is reversely proportional to product priority in the way value is assigned .
-* sprint arrival 
+* **sprint arrival** 
 If dependency is coming late in the product increment , then dependency score would be higher
 
 
