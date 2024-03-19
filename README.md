@@ -32,7 +32,7 @@ Lower and upper bounds are configurable . This value is scaled down to be betwee
 Effort in person days of dependency effort .For example if infra work needs to be done prior to complete functional work,then infra epic is a dependency . Value is scaled down to be between 0 to 5
 * **Product priority**  
 Importance of epic from product management point of view . A value between 1 and 2 . Decimal values are allowed . Dependency score is reversely proportional to product priority in the way value is assigned .
-* **sprint arrival** 
+* **sprint arrival**   
 If dependency is coming late in the product increment , then dependency score would be higher
 
 

@@ -31,6 +31,8 @@ class Node:
         self.__dep_score = dep_score
     def has_parent(self):
         return self._parent != None 
+    def __repr__(self):
+        return f"id({self.id}), dep score({self.__dep_score})"
 
 class AllNodes:
     def __init__(self):
@@ -57,7 +59,7 @@ class AllNodes:
         return True
       else: 
         return False
-    def visualise_all(self):
+    def sort_parents(self):
         return None
     
 def process_node(current_node):

@@ -63,5 +63,16 @@ def test_postorder_level2():
     c1.add_dependency(c21)
     c1.add_dependency(c22)
     postorder_visit(p)
+    
+def test_sort_nodes():
+    n1 = Node("P2G-100","FUNC",5)
+    n2 = Node("P2G-101","FUNC",15)
+    n3 = Node("P2G-102","FUNC",25)
+    n = set()
+    n.add(n1)
+    n.add(n2)
+    n.add(n3)
+    sorted_list = sorted(n,key=lambda  nd : nd.get_dependency_score() ,reverse=True)
+    print(sorted_list)
 
     
