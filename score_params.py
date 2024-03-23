@@ -67,3 +67,5 @@ scale = {
 
 valid_sprints = [ 1,2,3,4]
 
+top_displaynodes = 1
+

@@ -2,6 +2,7 @@ import graphviz
 from graphviz import Digraph
 from node import * 
 from IPython.display import display
+from score_params import * 
 
 dot = Digraph()
 
@@ -81,18 +82,24 @@ def postorder_draw(root : Node,c ):
         postorder_draw(node,c)
       draw_subgraph_node(root,c)
 
-def draw_subgraph(g,root,cluster_id):
+def draw_subgraph(g,root,cluster_id,color_val):
     with g.subgraph(name=cluster_id) as c:
-      c.attr(style='filled', color='lightgrey')
+      c.attr(style='filled', color=color_val)
       c.node_attr.update(style='filled', color='white')
       postorder_draw(root,c)
       
+def get_color(index):
+    color = 'lightgrey'
+    if index < top_displaynodes:
+       color = 'orange'
+    return color   
 
 def draw_allsubgraphs(set_pnodes):
     g = graphviz.Graph('parent') 
     for index,pnode in enumerate(set_pnodes):
+       color = get_color(index)
        cluster_id = f"cluster_{index}"
-       draw_subgraph(g,pnode,cluster_id)
+       draw_subgraph(g,pnode,cluster_id,color)
     return g
       
       
