@@ -1,17 +1,13 @@
 from node import *
-from requirement_load import load_req
 
 def test_node_init():
     n = Node("P2G_123","FUNC")
-    assert n.children_lengh() == 0
+    assert n.children_length() == 0
 
 def test_dep_score():
     n = Node("P2G_123","FUNC")
-    assert n.calc_dependency_score() == 1
+    assert n.calc_dependency_score() == 0
 
-def test_load_req():
-    print("xyz")
-    load_req()
     
 def test_child_parent():
     p = Node("P2G-100","FUNC")

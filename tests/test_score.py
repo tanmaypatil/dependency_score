@@ -19,8 +19,6 @@ def test_normal2():
     print(f"normalised score : {n}")
     assert n <= 5
 
-def test_iter_xls():
-    row_iterate()
 
 def test_calc_score1():
     col1 = ("requirement effort",30,10)

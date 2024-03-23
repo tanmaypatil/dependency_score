@@ -39,26 +39,40 @@ class AllNodes:
         self.nodes = {}
         # parents which does not have parents above them
         self.top_parents = set()
-    def create_node(self,id, epic_type , dep_score=0,_children=()):
-        n = Node(id, epic_type , dep_score,_children) 
-        self.add_node(n)   
-    def add_node(self,node):
+    def create_node(self,id : str , epic_type : str , dep_score : float = 0 ,_children=()):
+        n = Node(id , epic_type  , dep_score ,_children) 
+        self.__add_node(n)
+        return n   
+    def __add_node(self,node : Node ):
         if not isinstance(node, Node):
           return NotImplemented
         self.nodes[node.id] = node
-    def add_dependency(self,p,c):
-        assert isinstance(p, Node)
-        assert isinstance(c,Node) 
-        if p.has_parent() == None:
-          self.top_parents.add(p.id)
-        if c.has_parent() != None:
-          self.top_parents.remove(c.id)  
-        p.add_dependency(c)
-    def does_exist(self,id):
-      if id in self.nodes:
+        if node.has_parent() == False:
+          self.top_parents.add(node)
+    def add_dependency(self,parent  : Node ,child : Node ):
+        assert isinstance(parent, Node)
+        assert isinstance(child,Node)
+        parent.add_dependency(child)
+        if child.has_parent() == True:
+          self.top_parents.discard(child)  
+    def does_exist(self ,n : Node):
+      if n.id in self.nodes:
         return True
       else: 
         return False
+    def is_top_parent(self,n):
+        if n in self.top_parents:
+          return True
+        else: 
+          return False
+    def count_parents(self):
+      return len(self.top_parents)
+    def count_all(self):
+      return len(self.nodes)
+    def get_top_parents(self):
+      top_list = list(self.top_parents)
+      top_ids = [ n.id for n in top_list]
+      return top_ids
     def sort_parents(self):
         return None
     
