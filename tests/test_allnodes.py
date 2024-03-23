@@ -53,6 +53,10 @@ def test_simple_dep2():
     anodes.add_dependency(n1,d12)
     assert anodes.count_parents() == 2
     assert anodes.count_all() == 6
+    parents,_ = anodes.get_top_parents()
+    expected = list()
+    expected = expected + list( ["P2G-100","P2G-101"])
+    assert expected == parents
 
 def test_simple_dep2():
     anodes = AllNodes()
@@ -70,7 +74,7 @@ def test_simple_dep2():
     n1 = anodes.create_node("P2G-200","FUNC")
     anodes.add_dependency(parent=n1,child=n)
     assert anodes.count_parents() == 1
-    parents = anodes.get_top_parents()
+    parents,_ = anodes.get_top_parents()
     expected = list()
     expected.append("P2G-200")
     assert parents == expected

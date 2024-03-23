@@ -72,7 +72,7 @@ class AllNodes:
     def get_top_parents(self):
       top_list = list(self.top_parents)
       top_ids = [ n.id for n in top_list]
-      return top_ids
+      return top_ids,top_list
     def sort_parents(self):
         return None
     

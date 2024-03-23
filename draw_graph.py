@@ -60,7 +60,7 @@ def draw_full_tree(root,dot):
         draw_full_tree(node,dot)
       draw_node(root,dot)
 
-def draw_subgraph_node(node,c):
+def draw_subgraph_node(node : Node ,c):
     c.node(name=str(id(node)), label = "{  %s | dep_score %.4f }" % (node.id ,node.get_dependency_score()), shape='record')
     if node.children_length() > 0 :
       for child in node._children:
