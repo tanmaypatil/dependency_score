@@ -9,4 +9,8 @@ def test_fileexist():
     else:
         print(f"{os.getcwd()}")
         assert False
+        
+def test_e2e():
+    file_name = Path("requirements/requirement.xlsx")
+    process_calc_draw(file_name,None)
     

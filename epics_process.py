@@ -5,14 +5,11 @@ from draw_graph import *
 
 def create_graph(df):
     anodes = AllNodes()
-    for index, row in df.iterrows():
-      row_params = []
-      parent_id = df['requirement']
-      child_id = df['dependency epic']
-      epic_type = df['dependency']
-      req_effort = df['requirement effort']
-      sprint_arrival = df['dependency delivery sprint']
-      score = df['score']
+    for _, row in df.iterrows():
+      parent_id = row['requirement']
+      child_id = row['dependency epic']
+      epic_type = row['dependency']
+      score = row['score']
       parent_node = None
       # check if parent exists - if no create
       if anodes.does_exist(id=parent_id) == False :
