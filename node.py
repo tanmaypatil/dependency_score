@@ -55,8 +55,14 @@ class AllNodes:
         parent.add_dependency(child)
         if child.has_parent() == True:
           self.top_parents.discard(child)  
-    def does_exist(self ,n : Node):
-      if n.id in self.nodes:
+    def does_exist(self ,**kwargs):
+      id = None
+      if 'node' in kwargs:
+        id = kwargs['node'].id 
+      elif 'id' in kwargs:
+        id = kwargs['id'] 
+       
+      if id in self.nodes:
         return True
       else: 
         return False
@@ -69,12 +75,14 @@ class AllNodes:
       return len(self.top_parents)
     def count_all(self):
       return len(self.nodes)
-    def get_top_parents(self):
+    def get_top_parents(self)->tuple[list[str],list[Node]]:
       top_list = list(self.top_parents)
       top_ids = [ n.id for n in top_list]
       return top_ids,top_list
     def sort_parents(self):
-        return None
+        top_list = list(self.top_parents)
+        sorted_list = sorted(top_list, key= lambda n:(n.get_dependency_score()))
+        return sorted_list     
     
 def process_node(current_node):
     print("process_node ")

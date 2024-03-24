@@ -5,7 +5,7 @@ def test_create():
 def test_create_node():
     anodes = AllNodes()
     n = anodes.create_node("P2G-100","FUNC")
-    assert anodes.does_exist(n) == True
+    assert anodes.does_exist(node=n) == True
     assert anodes.is_top_parent(n) == True
 
 def test_simple_dep():
@@ -13,8 +13,8 @@ def test_simple_dep():
     n = anodes.create_node("P2G-100","FUNC")
     d = anodes.create_node("GDB-100","DEVOPS")
     anodes.add_dependency(n,d)
-    assert anodes.does_exist(n) == True
-    assert anodes.does_exist(d) == True
+    assert anodes.does_exist(node=n) == True
+    assert anodes.does_exist(node=d) == True
     assert anodes.is_top_parent(n) == True
     assert anodes.is_top_parent(d) == False
 
@@ -25,8 +25,8 @@ def test_simple_dep1():
     d1 = anodes.create_node("PCM-100","INFRA")
     anodes.add_dependency(n,d)
     anodes.add_dependency(n,d1)
-    assert anodes.does_exist(n) == True
-    assert anodes.does_exist(d) == True
+    assert anodes.does_exist(node=n) == True
+    assert anodes.does_exist(node=d) == True
     assert anodes.is_top_parent(n) == True
     assert anodes.is_top_parent(d) == False
     assert anodes.is_top_parent(d1) == False
@@ -39,8 +39,8 @@ def test_simple_dep2():
     d1 = anodes.create_node("PCM-100","INFRA")
     anodes.add_dependency(n,d)
     anodes.add_dependency(n,d1)
-    assert anodes.does_exist(n) == True
-    assert anodes.does_exist(d) == True
+    assert anodes.does_exist(node=n) == True
+    assert anodes.does_exist(node=d) == True
     assert anodes.is_top_parent(n) == True
     assert anodes.is_top_parent(d) == False
     assert anodes.is_top_parent(d1) == False
@@ -65,8 +65,8 @@ def test_simple_dep2():
     d1 = anodes.create_node("PCM-100","INFRA")
     anodes.add_dependency(n,d)
     anodes.add_dependency(n,d1)
-    assert anodes.does_exist(n) == True
-    assert anodes.does_exist(d) == True
+    assert anodes.does_exist(node=n) == True
+    assert anodes.does_exist(node=d) == True
     assert anodes.is_top_parent(n) == True
     assert anodes.is_top_parent(d) == False
     assert anodes.is_top_parent(d1) == False

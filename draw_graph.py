@@ -101,5 +101,8 @@ def draw_allsubgraphs(set_pnodes):
        cluster_id = f"cluster_{index}"
        draw_subgraph(g,pnode,cluster_id,color)
     return g
+
+def save_graph(g ):
+    g.render('round_table.svg', format='svg', view=False)      
       
       
