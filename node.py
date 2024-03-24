@@ -55,18 +55,22 @@ class AllNodes:
         parent.add_dependency(child)
         if child.has_parent() == True:
           self.top_parents.discard(child)  
-    def does_exist(self ,**kwargs):
+    def get_node(self,id:str) -> Node:
+        if id  in self.nodes:
+          return self.nodes[id]
+        else: 
+          return None
+    def does_exist(self ,**kwargs)-> bool:
       id = None
       if 'node' in kwargs:
         id = kwargs['node'].id 
       elif 'id' in kwargs:
         id = kwargs['id'] 
-       
       if id in self.nodes:
         return True
       else: 
         return False
-    def is_top_parent(self,n):
+    def is_top_parent(self,n) -> bool:
         if n in self.top_parents:
           return True
         else: 
@@ -81,7 +85,7 @@ class AllNodes:
       return top_ids,top_list
     def sort_parents(self):
         top_list = list(self.top_parents)
-        sorted_list = sorted(top_list, key= lambda n:(n.get_dependency_score()))
+        sorted_list = sorted(top_list, key= lambda n:(n.get_dependency_score()),reverse=True)
         return sorted_list     
     
 def process_node(current_node):

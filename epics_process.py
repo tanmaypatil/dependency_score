@@ -11,9 +11,13 @@ def create_graph(df):
       epic_type = row['dependency']
       score = row['score']
       parent_node = None
+      print(f"parent id {parent_id} child id{child_id} epic type{epic_type} score{score}")
       # check if parent exists - if no create
       if anodes.does_exist(id=parent_id) == False :
+        print(f" creating new parent node {parent_id}")
         parent_node = anodes.create_node(parent_id,"FUNC")
+      else:
+        parent_node = anodes.get_node(parent_id)
       # create child Node
       child_node = anodes.create_node(child_id,epic_type=epic_type,dep_score=score)
       anodes.add_dependency(parent=parent_node,child=child_node)

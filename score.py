@@ -24,17 +24,17 @@ def load_req():
 
 def row_iterate_score(df):
     columns = params.keys()
-    score_list = []
-    for _, row in df.iterrows():
+    df["score"] = 0
+    score = 0
+    for index, row in df.iterrows():
       row_params = []
       for column in columns:
         value = row [column]
         weight = params[column]["weight"]
         col_params = (column,value, weight)
         row_params.append(col_params)
-      score =calculate_score(row_params)
-      score_list.append(score) 
-    df["score"] = score_list
+      score,err =calculate_score(row_params)
+      df.loc[index,"score"] = score
     print(df["score"])
     
     

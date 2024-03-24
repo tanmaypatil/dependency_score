@@ -1,0 +1,18 @@
+graph parent {
+	subgraph cluster_0 {
+		node [color=white style=filled]
+		color=orange style=filled
+		2215195345824 [label="{  PCM-100 | dep_score 3.5541 }" shape=record]
+		2215201365152 [label="{  GDB-100 | dep_score 4.0687 }" shape=record]
+		2215162534592 [label="{  P2G-100 | dep_score 7.6228 }" shape=record]
+		2215162534592 -- 2215195345824
+		2215162534592 -- 2215201365152
+	}
+	subgraph cluster_1 {
+		node [color=white style=filled]
+		color=lightgrey style=filled
+		2215201363040 [label="{  P2G-501 | dep_score 1.5941 }" shape=record]
+		2215201364432 [label="{  P2G-101 | dep_score 1.5941 }" shape=record]
+		2215201364432 -- 2215201363040
+	}
+}
